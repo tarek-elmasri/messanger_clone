@@ -38,8 +38,9 @@ export const authOptions: AuthOptions = {
           throw new Error("Invalid Credentials");
         }
 
+        const salt = process.env.SALT as string;
         const isCorrectPassword = await bcrypt.compare(
-          credentials.password,
+          credentials.password + salt,
           user.hashedPassword
         );
 
