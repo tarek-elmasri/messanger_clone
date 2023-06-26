@@ -1,7 +1,7 @@
 import Image from "next/image";
 import AuthForm from "./components/AuthForm";
 
-const page = () => {
+const Page = () => {
   return (
     <div
       className="
@@ -42,4 +42,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
