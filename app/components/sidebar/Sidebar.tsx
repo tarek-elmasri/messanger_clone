@@ -10,7 +10,7 @@ const Sidebar = ({ children }: { children: React.ReactNode }) => {
     <div className="h-full">
       <DesktopSidebar user={currentUser!} />
       <MobileFooter />
-      <main className="lg:pl029 h-full">{children}</main>
+      <main className="lg:pl-20 h-full">{children}</main>
     </div>
   );
 };
