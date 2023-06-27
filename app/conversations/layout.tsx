@@ -1,7 +1,7 @@
 import React, { use } from "react";
 import Sidebar from "../components/sidebar/Sidebar";
 import ConversationList from "./components/ConversationList";
-import getConversations from "../actions/getConversations";
+import { getConversations } from "../actions/getConversations";
 
 const ConversationsLayout = ({ children }: { children: React.ReactNode }) => {
   const conversations = use(getConversations());

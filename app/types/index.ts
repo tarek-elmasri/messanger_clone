@@ -9,3 +9,7 @@ export type FullConversationType = Conversation & {
   users: User[];
   messages: FullMessageType[];
 };
+
+export type CloudinaryResult = {
+  info: { secure_url: string };
+};
