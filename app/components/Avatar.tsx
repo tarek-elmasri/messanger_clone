@@ -22,6 +22,7 @@ const Avatar = ({ user }: { user: User }) => {
           alt="avatar"
           src={user.image || "/images/placeholder.jpg"}
           fill
+          sizes="(max-width: 200px 100vw)"
         />
       </div>
 
