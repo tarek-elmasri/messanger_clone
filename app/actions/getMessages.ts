@@ -9,7 +9,7 @@ export const getMessages = async (conversationId: string) => {
 
     const messages = await prisma.message.findMany({
       orderBy: {
-        createdAt: "desc",
+        createdAt: "asc",
       },
       where: {
         conversationId,

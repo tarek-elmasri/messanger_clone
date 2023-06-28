@@ -62,7 +62,7 @@ const MessageBox: React.FC<MessageBoxProps> = ({ data, isLast }) => {
               height={288}
               width={288}
               src={data.image}
-              className="object-cover cursor-pointer hover:scale-110 transition translate"
+              className="object-cover cursor-pointer hover:scale-110 transition"
             />
           ) : (
             <div>{data.body}</div>
@@ -70,7 +70,7 @@ const MessageBox: React.FC<MessageBoxProps> = ({ data, isLast }) => {
         </div>
         {isLast && isOwn && seenList.length > 0 && (
           <div className="text-xs font-light text-gray-500">
-            Seen By ${seenList}
+            Seen By {seenList}
           </div>
         )}
       </div>
