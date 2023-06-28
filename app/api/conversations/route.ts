@@ -1,6 +1,7 @@
 import getCurrentUser from "@/app/actions/getCurrentUser";
 import { NextResponse } from "next/server";
 import prisma from "@/app/libs/prismadb";
+import { pusherServer } from "@/app/libs/pusher";
 
 const POST = async (req: Request) => {
   try {
@@ -24,8 +25,8 @@ const POST = async (req: Request) => {
           isGroup,
           users: {
             connect: [
-              ...members.map((member: { value: string }) => ({
-                id: member.value,
+              ...members.map((member: { id: string }) => ({
+                id: member.id,
               })),
               {
                 id: currentUser.id,
@@ -34,6 +35,12 @@ const POST = async (req: Request) => {
           },
         },
         include: { users: true },
+      });
+
+      newConversation.users.forEach((user) => {
+        if (user.email) {
+          pusherServer.trigger(user.email, "conversation:new", newConversation);
+        }
       });
 
       return NextResponse.json(newConversation);
@@ -75,6 +82,12 @@ const POST = async (req: Request) => {
         },
       },
       include: { users: true },
+    });
+
+    newConversation.users.map((user) => {
+      if (user.email) {
+        pusherServer.trigger(user.email, "conversation:new", newConversation);
+      }
     });
 
     return NextResponse.json(newConversation);
