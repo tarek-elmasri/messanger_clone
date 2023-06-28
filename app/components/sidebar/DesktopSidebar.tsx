@@ -5,14 +5,21 @@ import { User } from "@prisma/client";
 import useRoutes from "@/app/hooks/useRoutes";
 import DesktopItem from "./DesktopItem";
 import Avatar from "../Avatar";
+import SettingsModal from "./SettingsModal";
 
 const DesktopSidebar = ({ user }: { user: User }) => {
   const routes = useRoutes();
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div
-      className="
+    <>
+      <SettingsModal
+        currentUser={user}
+        isOpen={isOpen}
+        onClose={() => setIsOpen(false)}
+      />
+      <div
+        className="
   hidden
   lg:fixed
   lg:inset-y-0
@@ -28,49 +35,50 @@ const DesktopSidebar = ({ user }: { user: User }) => {
   lg:flex-col
   justify-between
   "
-    >
-      <nav
-        className="
+      >
+        <nav
+          className="
     mt-4
     flex
     flex-col
     justify-between
     "
-      >
-        <ul role="list" className="flex flex-col items-center space-y-1">
-          {routes.map((item) => (
-            <DesktopItem
-              key={item.label}
-              href={item.href}
-              label={item.label}
-              icon={item.icon}
-              active={item.active}
-              onClick={item.onClick}
-            />
-          ))}
-        </ul>
-      </nav>
-      <nav
-        className="
+        >
+          <ul role="list" className="flex flex-col items-center space-y-1">
+            {routes.map((item) => (
+              <DesktopItem
+                key={item.label}
+                href={item.href}
+                label={item.label}
+                icon={item.icon}
+                active={item.active}
+                onClick={item.onClick}
+              />
+            ))}
+          </ul>
+        </nav>
+        <nav
+          className="
       mt-4 
       flex
       flex-col
       justify-between
       items-center
       "
-      >
-        <div
-          onClick={() => setIsOpen(true)}
-          className="
+        >
+          <div
+            onClick={() => setIsOpen(true)}
+            className="
         cursor-pointer
         hover:opacity-75
         transition
         "
-        >
-          <Avatar user={user} />
-        </div>
-      </nav>
-    </div>
+          >
+            <Avatar user={user} />
+          </div>
+        </nav>
+      </div>
+    </>
   );
 };
 
