@@ -25,7 +25,7 @@ const Avatar = ({ user }: { user: User }) => {
       >
         <Image
           alt="avatar"
-          src={user.image || "/images/placeholder.jpg"}
+          src={user?.image || "/images/placeholder.jpg"}
           fill
           sizes="(max-width: 200px 100vw)"
         />
